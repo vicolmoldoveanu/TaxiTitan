@@ -1,0 +1,37 @@
+---
+export interface ServiceItem {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  items?: ServiceItem[];
+}
+
+const { title, subtitle, items = [] } = Astro.props;
+---
+
+<section class="relative not-prose scroll-mt-[72px]" id="services">
+  <div class="relative mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16 lg:py-20 text-default">
+    {(title || subtitle) && (
+      <div class="mb-8 md:mb-12 text-center max-w-3xl mx-auto">
+        {title && <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading text-heading" set:html={title} />}
+        {subtitle && <p class="mt-4 text-xl text-muted" set:html={subtitle} />}
+      </div>
+    )}
+    {items.length > 0 && (
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((item) => (
+          <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 p-6 shadow-sm">
+            {item.icon && <div class="text-3xl mb-3">{item.icon}</div>}
+            <h3 class="text-lg font-semibold mb-2">{item.title}</h3>
+            <p class="text-muted text-sm">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,41 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="relative not-prose scroll-mt-[72px]" id="contact">
+  <div class="relative mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16 lg:py-20 text-default">
+    {(title || subtitle) && (
+      <div class="mb-8 md:mb-12 text-center max-w-3xl mx-auto">
+        {title && <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading text-heading" set:html={title} />}
+        {subtitle && <p class="mt-4 text-xl text-muted" set:html={subtitle} />}
+      </div>
+    )}
+    <div class="flex flex-col max-w-xl mx-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 shadow p-4 sm:p-6 lg:p-8 w-full">
+      <form>
+        <div class="mb-6">
+          <label for="name" class="block text-sm font-medium">Nume</label>
+          <input type="text" name="name" id="name" placeholder="Numele tau" autocomplete="name"
+            class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900" />
+        </div>
+        <div class="mb-6">
+          <label for="email" class="block text-sm font-medium">Email</label>
+          <input type="email" name="email" id="email" placeholder="email@exemplu.ro" autocomplete="email"
+            class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900" />
+        </div>
+        <div class="mb-6">
+          <label for="message" class="block text-sm font-medium">Mesaj</label>
+          <textarea id="message" name="message" rows={4} placeholder="Mesajul tau..."
+            class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"></textarea>
+        </div>
+        <div class="grid">
+          <button type="submit" class="btn-primary">Trimite mesaj</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
